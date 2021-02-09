@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { TextInput } from 'react-native-gesture-handler';
 
-const SearchBar = () => {
+const SearchBar = ({ term, onChangeTerm }) => {
   return (
     <View style={styles.backgroundStyle}>
       <Feather
@@ -13,6 +13,8 @@ const SearchBar = () => {
       <TextInput
         style={styles.inputStyle}
         placeholder="Search"
+        value={term}
+        onChangeText={newTerm => onChangeTerm(newTerm)}
       />
     </View>
   );
