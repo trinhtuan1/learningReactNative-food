@@ -6,28 +6,40 @@ import yelp from '../api/yelp';
 const SearchScreen = () => {
   const [ term, setTerm ] = React.useState('');
   const [ results, setResults ] = React.useState([]);
+  const [ errorMessage, setErrorMessage ] = React.useState('');
 
-  const searchApi = async () => {
-    const response = await yelp.get('/search', {
-      params: {
-        limit: 30,
-        term,
-        location: 'san jose'
-      }
-    });
-    setResults(response.data.businesses);
+  const searchApi = async (searchTerm) => {
+    console.log('Hi there');
+    try {
+      const response = await yelp.get('/search', {
+        params: {
+          limit: 30,
+          term: searchTerm,
+          location: 'san jose'
+        }
+      });
+      setResults(response.data.businesses);
+      setErrorMessage('');
+    } catch(err) {
+      setErrorMessage('Something went wrong');
+    }
   };
+
+  React.useEffect(() => {
+    searchApi('pasta');
+  }, []);
 
   return (
     <View style={styles.backgroundStyle}>
       <SearchBar 
         term={term}
         onChangeTerm={setTerm}
-        onSubmitTerm={searchApi}
+        onSubmitTerm={() => searchApi(term)}
       />
-      <Text>Search Screen</Text>
-      <Text>{term}</Text>
-      <Text>Found {results.length} results.</Text>
+      {
+        errorMessage ? <Text>{errorMessage}</Text> : null
+      }
+      <Text>We have found {results.length} results.</Text>
     </View>
   );
 };
