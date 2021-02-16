@@ -17,6 +17,7 @@ const ResultsList = ({ title, results }) => {
           );
         }}
       />
+      <Text>{results.length}</Text>
     </View>
   );
 };
