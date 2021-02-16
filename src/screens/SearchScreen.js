@@ -28,15 +28,15 @@ const SearchScreen = () => {
       <Text>We have found {results.length} results.</Text>
       <ResultsList 
         title="Cost Effective" 
-        result={filterResultByPrice('$')}
+        results={filterResultByPrice('$')}
       />
       <ResultsList 
         title="Bit Pricer" 
-        result={filterResultByPrice('$$')}
+        results={filterResultByPrice('$$')}
       />
       <ResultsList 
         title="Big Spender"
-        result={filterResultByPrice('$$$')}
+        results={filterResultByPrice('$$$')}
       />
     </View>
   );
