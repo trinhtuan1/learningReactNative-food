@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import yelp from '../api/yelp';
 import useResults from '../hooks/useResults';
@@ -16,7 +16,7 @@ const SearchScreen = () => {
   };
 
   return (
-    <View style={styles.backgroundStyle}>
+    <>
       <SearchBar 
         term={term}
         onChangeTerm={setTerm}
@@ -26,26 +26,26 @@ const SearchScreen = () => {
         errorMessage ? <Text>{errorMessage}</Text> : null
       }
       <Text>We have found {results.length} results.</Text>
-      <ResultsList 
-        title="Cost Effective" 
-        results={filterResultByPrice('$')}
-      />
-      <ResultsList 
-        title="Bit Pricer" 
-        results={filterResultByPrice('$$')}
-      />
-      <ResultsList 
-        title="Big Spender"
-        results={filterResultByPrice('$$$')}
-      />
-    </View>
+      <ScrollView>
+        <ResultsList 
+          title="Cost Effective" 
+          results={filterResultByPrice('$')}
+        />
+        <ResultsList 
+          title="Bit Pricer" 
+          results={filterResultByPrice('$$')}
+        />
+        <ResultsList 
+          title="Big Spender"
+          results={filterResultByPrice('$$$')}
+        />
+      </ScrollView>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  backgroundStyle: {
-    backgroundColor: '#fff',
-  }
+
 });
 
 export default SearchScreen;
