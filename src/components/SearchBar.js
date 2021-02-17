@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
     height: 50,
     marginHorizontal: 15,
     borderRadius: 5,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginBottom: 10
   },
   iconStyle: {
     fontSize: 35,
